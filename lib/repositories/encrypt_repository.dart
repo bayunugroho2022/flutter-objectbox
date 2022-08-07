@@ -1,4 +1,5 @@
 import 'dart:convert' show base64Url;
+import 'dart:typed_data';
 
 import 'package:encrypt/encrypt.dart';
 import 'package:flutter/foundation.dart' show kDebugMode;
@@ -21,6 +22,15 @@ class EncryptRepository {
       print("encryptAES: ${encrypted!.base64}");
     }
     return encrypted;
+  }
+
+  static Future<Uint8List?> encryptFile(List<int> data) async {
+    final key = Key.fromSecureRandom(16);
+    final iv = IV.fromLength(16);
+    final encrypter = Encrypter(AES(key, mode: AESMode.cbc));
+
+    final encryptedFile = encrypter.encryptBytes(data, iv: iv);
+    return encryptedFile.bytes;
   }
 
   static decryptAES(plainText) {

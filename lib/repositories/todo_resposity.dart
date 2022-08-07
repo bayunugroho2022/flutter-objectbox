@@ -8,8 +8,8 @@ class TodoRepository {
   final db = ObjectBoxDatabase();
 
   Future<Todo> insert(String desc) async {
-    Encrypted data = EncryptRepository.encryptAES(desc);
-    Todo todo = Todo(desc: data.base64, completed: false);
+    // Encrypted data = EncryptRepository.encryptAES(desc);
+    Todo todo = Todo(desc: desc, completed: false);
     final box = await getBox();
     box.put(todo);
     return todo;
@@ -17,18 +17,14 @@ class TodoRepository {
 
   Future<Box<Todo>> getBox() async {
     final store = await db.getStore();
-    // if (Admin.isAvailable()) {
-    //   // Keep a reference until no longer needed or manually closed.
-    //   var admin = Admin(store);
-    //   print(admin.port);
-    // }
     return store.box<Todo>();
   }
 
   Future<List<Todo>> getAll() async {
     List<Todo> todos;
     final box = await getBox();
-    return box.getAll();
+    todos = box.getAll();
+    return todos;
   }
 
   Future<bool> delete(int id) async {
