@@ -30,7 +30,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -40,16 +39,22 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         child: Center(
           child: InkWell(
-              onTap: (){
+              onTap: () {
                 print('berhasilssr');
                 TodoRepository().insert("test").then((value) {
                   print('berhasil');
-                }).catchError((onError){
+                }).catchError((onError) {
                   print('dsadas $onError');
                 });
               },

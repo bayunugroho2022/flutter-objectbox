@@ -1,6 +1,6 @@
-import 'package:objectbox/objectbox.dart';
 import 'package:object_box/database/objectbox_database.dart';
 import 'package:object_box/model.dart';
+import 'package:objectbox/objectbox.dart';
 
 class TodoRepository {
   final db = ObjectBoxDatabase();
@@ -14,6 +14,10 @@ class TodoRepository {
 
   Future<Box<Todo>> getBox() async {
     final store = await db.getStore();
+    if (Admin.isAvailable()) {
+      // Keep a reference until no longer needed or manually closed.
+      var admin = Admin(store);
+    }
     return store.box<Todo>();
   }
 
