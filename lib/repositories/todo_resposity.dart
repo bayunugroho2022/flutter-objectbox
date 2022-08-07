@@ -1,6 +1,6 @@
 import 'package:encrypt/encrypt.dart';
 import 'package:object_box/database/objectbox_database.dart';
-import 'package:object_box/model.dart';
+import 'package:object_box/model/model.dart';
 import 'package:object_box/repositories/encrypt_repository.dart';
 import 'package:objectbox/objectbox.dart';
 

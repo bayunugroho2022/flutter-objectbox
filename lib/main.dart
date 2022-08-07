@@ -3,7 +3,7 @@ import 'package:object_box/database/database_manager.dart';
 import 'package:object_box/repositories/encrypt_repository.dart';
 import 'package:object_box/repositories/todo_resposity.dart';
 
-import 'model.dart';
+import 'model/model.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
